@@ -1,39 +1,52 @@
-#include<stdio.h>
+/*
+PROBLEM: Calculate the acceleration (m/s²) and the time (seconds) for a jet fighter to be launched from an aircraft-carrier catapult, given the jet's takeoff speed in km/hr and the distance in meters.
+
+ANALYSIS: 
+We are given the takeoff speed and the distance. Using the kinematic equations, we can compute the acceleration and time.
+
+- Convert takeoff speed from km/hr to m/s.
+- Use the formula s = (1/2) * a * t² to find acceleration.
+- Use the formula v = a * t to find time.
+
+DATA REQUIREMENTS:
+Problem Inputs:
+    double speed_kmh;  // Takeoff speed in km/hr
+    double distance_m; // Distance in meters
+
+Problem Outputs:
+    double acceleration; // Acceleration in m/s²
+    double time;         // Time in seconds
+
+FORMULAS:
+    - Speed conversion: v (m/s) = speed_kmh * 1000 / 3600
+    - Time: v = a * t => t = v / a
+    - Distance: s = (1/2) * a * t² => a = (2 * s) / t²
+*/
+
+#include <stdio.h>
+#include <math.h>
 
 int main() {
-    // Variables for inputs
-    double takeoff_speed_kmh, distance_m;
-    
-    // Prompt user for input
-    printf("Enter the jet's takeoff speed (in km/hr): ");
-    scanf("%lf", &takeoff_speed_kmh);
-    
-    printf("Enter the distance over which the jet accelerates (in meters): ");
+    double speed_kmh, speed_ms, distance_m, acceleration, time;
+
+    // Input: Get takeoff speed in km/hr and distance in meters
+    printf("Enter the takeoff speed of the jet in km/hr: ");
+    scanf("%lf", &speed_kmh);
+    printf("Enter the distance over which the jet accelerates (meters): ");
     scanf("%lf", &distance_m);
-    
+
     // Convert speed from km/hr to m/s
-    double takeoff_speed_ms = takeoff_speed_kmh * (1000.0 / 3600.0); // 1 km/hr = 1000/3600 m/s
-    
+    speed_ms = speed_kmh * 1000 / 3600;
+
     // Calculate acceleration using the formula: a = v^2 / (2 * s)
-    double acceleration = (takeoff_speed_ms * takeoff_speed_ms) / (2 * distance_m);
-    
+    acceleration = (speed_ms * speed_ms) / (2 * distance_m);
+
     // Calculate time using the formula: t = v / a
-    double time = takeoff_speed_ms / acceleration;
-    
-    // Display the results
-    printf("Acceleration: %.2f m/s^2\n", acceleration);
-    printf("Time to reach takeoff speed: %.2f seconds\n", time);
-    
+    time = speed_ms / acceleration;
+
+    // Output: Display the acceleration and time
+    printf("The acceleration of the jet is: %.2f m/s²\n", acceleration);
+    printf("The time taken to reach the takeoff speed is: %.2f seconds\n", time);
+
     return 0;
 }
-
-
-/*
-
-Enter the jet's takeoff speed (in km/hr): 278
-Enter the distance over which the jet accelerates (in meters): 94
-Acceleration: 11.92 m/s^2
-Time to reach takeoff speed: 6.47 seconds
-
-
-*/
